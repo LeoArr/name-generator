@@ -14,6 +14,13 @@ function xmlHttpReq(method, url, options, callback) {
     xhttp.send();
 }
 
+function displaySnackbar(str) {
+    var x = document.getElementById("snackbar");
+    x.innerText = str;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 $(document).ready(function(){
     $('#btn-fem').click(function($event) {
         var options = {
@@ -39,6 +46,28 @@ $(document).ready(function(){
         }
         getName(options);
     });
+
+    $('#btn-sav').click(function() {
+        if (typeof(Storage) !== "undefined") {
+            var name = $('#name').text();
+            var store = localStorage.getItem("savedNames");
+            if (store) {
+                store = JSON.parse(store);
+                if (store.names.includes(name)) return;
+                if (store.names.length > 16) {
+                    displaySnackbar("Too many names saved already.");
+                }
+                store.names.push(name);
+                localStorage.setItem("savedNames", JSON.stringify(store));
+            } else {
+                localStorage.setItem("savedNames", JSON.stringify({ names: [name] }));
+            }
+            updateSavedNames();
+        } else {
+            displaySnackbar("Sorry your browser does not support local storage.")
+        }
+    });
+
     //on load
     var options = {
         type: 'both',
@@ -46,18 +75,45 @@ $(document).ready(function(){
         lastn: true
     }
     getName(options);
+    myOnLoad();
 });
+
+function removeName(index) {
+    const json = localStorage.getItem("savedNames");
+    if (!json) return;
+    const names = JSON.parse(json).names;
+    names.splice(index, 1);
+    localStorage.setItem("savedNames", JSON.stringify({ names: names }));
+    updateSavedNames();
+}
+
+function updateSavedNames() {
+    const json = localStorage.getItem("savedNames");
+    if (!json) return;
+    const names = JSON.parse(json).names;
+    document.getElementById("names-list").innerHTML = "";
+    for (var i = 0; i < names.length; i++) {
+        $("#names-list").append('<li><div class="name">' + names[i] + '</div><div onclick="removeName('+ i +')" class="remove-name"><i class="fas fa-trash-alt"></i></div></li>');
+    }
+}
 
 function getName(options) {
     xmlHttpReq('GET', '/get-name', options, function(resp, err=null) {
+        if (err) return;
         $('#name').text(resp)
+        getCounter();
     });
-    getCounter();
 }
 
 function getCounter() {
     xmlHttpReq('GET', '/nr-of-gens', '', function(resp, err=null) {
-        $('#nrofgens').text(JSON.parse(resp).nr + " names generated");
+        if (err) return;
+        if (resp)
+            $('#nrofgens').text(JSON.parse(resp).nr + " names generated");
     });
 }
-window.onload = getCounter();
+
+function myOnLoad() {
+    getCounter()
+    updateSavedNames();
+}

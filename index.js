@@ -95,11 +95,10 @@ async function getCounter(res=null) {
 		if (err) {
 			if (res)
 				res.send(err);
-			else console.log("hej" + err);
 		} else {
-			if (res)
+			if (res) {
 				res.send(row[0]);
-			console.log("du " + row);
+			}
 		}
 	});
 }
@@ -110,6 +109,6 @@ app.get('/nr-of-gens', (req, res) => {
 	getCounter(res);
 });
 
-const port = 8080;
+const port = 5050;
 
 app.listen(port, () => console.log("Listedning on port " + port));

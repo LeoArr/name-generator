@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <script type="application/javascript" src="app.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
     <title>Sven Doom's name-gen</title>
 </head>
 <header class="title">
@@ -26,6 +27,9 @@
             <button id="btn-wil" class="gen-btn">
                 Wild card!
             </button>
+            <button id="btn-sav" class="gen-btn">
+                <i class="far fa-save"></i>
+            </button>
         
             <div class="options">
                 <div id="comp">
@@ -40,8 +44,13 @@
             <div id="nrofgens">
                 1231231
             </div>
+            <div class="names-list-container">
+                <ul id="names-list">
+                </ul>
+            </div>
         </div>
     </div>
+    <div id="snackbar">Sorry your browser does not support local storage.</div>
     <img src="bright-countryside-dawn-302804.jpg" alt="" class="bg">
 </body>
 </html>

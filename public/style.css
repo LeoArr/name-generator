@@ -11,11 +11,6 @@ html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
-    /* background: url(bright-countryside-dawn-302804.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-     background-size: cover; */
 }
 
 header {
@@ -48,6 +43,12 @@ img.bg {
     position: fixed;
     top: 0;
     left: 0;
+    /* unselectable */
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
 }
 
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
@@ -81,7 +82,7 @@ button:focus {
 .gen-btn, .options {
     background-color: var(--dark);
     color: var(--light);
-    padding: 0.6rem 1.3rem;
+    padding: 0.6rem 1rem;
     text-decoration: none;
     border: 0;
     box-shadow: var(--shadow);
@@ -98,7 +99,7 @@ button:focus {
     grid-area: name;
     background-color: rgba(204, 204, 204, 1);
     color: var(--dark);
-    padding: 0.6rem 1.3rem;
+    padding: 0.6rem 1.6rem;
     font-size: 1.1rem;
     text-align: center;
 }
@@ -130,16 +131,22 @@ button:focus {
     grid-area: lastn;
 }
 
+#btn-sav {
+    grid-area: btn-save;
+    color: #666;
+}
+
 .generation-station {
     margin-top: 40px;
     justify-content: center;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 10px;
     grid-template-areas:
-        'name name name'
-        'btn-fem btn-mal btn-wil'
-        'options options options'
-        'nrofgens nrofgens nrofgens';
+        'name name name name'
+        'btn-fem btn-mal btn-wil btn-save'
+        'options options options options'
+        'nrofgens nrofgens nrofgens nrofgens'
+        'list list list list';
 }
 
 #nrofgens {
@@ -147,4 +154,84 @@ button:focus {
     text-align: center;
     color: var(--light);
     text-shadow: var(--shadow);
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* Name list */
+.names-list-container {
+    margin-top: 40px;
+    grid-area: list;
+    color: var(--light);
+    text-shadow: var(--shadow);
+}
+
+#names-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: grid;
+    grid-template-areas: 'name name name remove-name';
+    text-align: left;
+}
+
+.saved-name {
+    grid-area: name;
+}
+
+.remove-name {
+    grid-area: remove-name;
+    text-align: right;
+}
+
+.remove-name:hover {
+    color: white;
 }
