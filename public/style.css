@@ -1,0 +1,150 @@
+:root {
+    --dark: #333;
+    --light: #ccc;
+    --shadow: 0px 1px 10px rgba(10, 10, 10, 0.8);;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    /* background: url(bright-countryside-dawn-302804.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+     background-size: cover; */
+}
+
+header {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--light);
+}
+
+body {
+    margin: 0;
+    padding: 0px;
+    background: rgb(68, 68, 68);
+    line-height: 1.4;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+/* From https://css-tricks.com/perfect-full-page-background-image/ */
+img.bg {
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+    z-index: -1;
+    opacity: 0.4;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+        
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+        left: 50%;
+        margin-left: -512px;   /* 50% */
+    }
+}
+
+@font-face {
+    font-family: dungFont;
+    src: url(DUNGRG__.TTF);
+}
+
+button:focus {
+    outline: 0;
+}
+
+.title {
+    font-family: dungFont;
+    font-size: 3rem;
+    color: white;
+    text-shadow: var(--shadow);
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.gen-btn, .options {
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.6rem 1.3rem;
+    text-decoration: none;
+    border: 0;
+    box-shadow: var(--shadow);
+    transition: color 150ms, background-color 150ms;
+}
+
+.gen-btn:hover {
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+#name {
+    min-height: 25px;
+    grid-area: name;
+    background-color: rgba(204, 204, 204, 1);
+    color: var(--dark);
+    padding: 0.6rem 1.3rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.options {
+    display: grid;
+    grid-area: options;
+    grid-template-areas: 'comp . lastn'
+}
+
+#btn-fem {
+    grid-area: btn-fem;
+}
+
+#btn-mal {
+    grid-area: btn-mal;
+}
+
+#btn-wil {
+    grid-area: btn-wil;
+}
+
+#comp {
+    grid-area: comp;
+    margin-right: 20px;
+}
+
+#lastn {
+    grid-area: lastn;
+}
+
+.generation-station {
+    margin-top: 40px;
+    justify-content: center;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+        'name name name'
+        'btn-fem btn-mal btn-wil'
+        'options options options'
+        'nrofgens nrofgens nrofgens';
+}
+
+#nrofgens {
+    grid-area: nrofgens;
+    text-align: center;
+    color: var(--light);
+    text-shadow: var(--shadow);
+}
