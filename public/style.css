@@ -209,6 +209,17 @@ However, delay the fade out process for 2.5 seconds */
     grid-area: list;
     color: var(--light);
     text-shadow: var(--shadow);
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.names-list-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: rgba(204, 204, 204, 0.2);
+}
+
+.names-list-container::-webkit-scrollbar-thumb {
+    background-color: rgba(204, 204, 204, 0.2);
 }
 
 #names-list {

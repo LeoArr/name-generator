@@ -54,9 +54,6 @@ $(document).ready(function(){
             if (store) {
                 store = JSON.parse(store);
                 if (store.names.includes(name)) return;
-                if (store.names.length > 16) {
-                    displaySnackbar("Too many names saved already.");
-                }
                 store.names.push(name);
                 localStorage.setItem("savedNames", JSON.stringify(store));
             } else {
