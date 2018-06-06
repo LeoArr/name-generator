@@ -64,8 +64,8 @@ function getLastName(type) {
 //DB
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : 'password',
+    user     : 'dbuser',
+    password : 'kallestropp',
     database : 'namegendatabase'
   });
   
