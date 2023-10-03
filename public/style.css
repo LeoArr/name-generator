@@ -26,6 +26,7 @@ body {
     line-height: 1.4;
     height: 100%;
     scroll-behavior: smooth;
+    background-color: #40362e;
 }
 
 /* From https://css-tricks.com/perfect-full-page-background-image/ */

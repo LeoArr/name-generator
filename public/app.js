@@ -1,18 +1,5 @@
 
-//helper function for html requests
-function xmlHttpReq(method, url, options, callback) {
-    url += "?type=" + options.type + "&compound=" + options.compound + "&lastn=" + options.lastn;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            callback(xhttp.responseText);
-        } else {
-            callback(xhttp.responseText, err=this.status);
-        }
-    }
-    xhttp.open(method, url, true);
-    xhttp.send();
-}
+
 
 function displaySnackbar(str) {
     var x = document.getElementById("snackbar");
@@ -75,6 +62,11 @@ $(document).ready(function(){
     myOnLoad();
 });
 
+function getType(type) {
+	if (type == "female" || type == "male") return type;
+	return (Math.random() >= 0.5) ? "female" : "male";
+}
+
 function removeName(index) {
     const json = localStorage.getItem("savedNames");
     if (!json) return;
@@ -95,22 +87,40 @@ function updateSavedNames() {
 }
 
 function getName(options) {
-    xmlHttpReq('GET', '/get-name', options, function(resp, err=null) {
-        if (err) return;
-        $('#name').text(resp)
-        getCounter();
-    });
+    const _type = getType(options.type);
+	var name = getNameFromList(_type);
+	if (options.compound == true) {
+		name += "-" + getNameFromList(_type);
+	}
+	if (options.lastn == true) {
+		name += " " + getLastName(_type);
+	}
+    $('#name').text(name)
 }
 
-function getCounter() {
-    xmlHttpReq('GET', '/nr-of-gens', '', function(resp, err=null) {
-        if (err) return;
-        if (resp)
-            $('#nrofgens').text(JSON.parse(resp).nr + " names generated");
-    });
+function getNameFromList(type) {
+    return names[type][Math.floor(Math.random() * names[type].length)];
+}
+
+const consonants = "bcdfghjklmnpqrstvzx";
+
+function getLastName(type) {
+	var parent = getNameFromList(getType("x"));
+	if (type == "female") {
+		const suffix = (Math.random() >= 0.5) ? "dotter" : "dottir";
+		if (consonants.includes(parent.substr(parent.length-1, parent.length))) {
+			return parent + "s" + suffix;
+		}
+		return parent + suffix;
+	} else {
+		const suffix = "son";
+		if (parent.substr(parent.length-1, parent.length) == "s") {
+			return parent + suffix;
+		}
+		return parent + "s" + suffix;
+	}
 }
 
 function myOnLoad() {
-    getCounter()
     updateSavedNames();
 }
