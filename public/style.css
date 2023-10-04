@@ -25,6 +25,7 @@ body {
     background: rgb(68, 68, 68);
     line-height: 1.4;
     height: 100%;
+    overflow-y: auto;
     scroll-behavior: smooth;
     background-color: #40362e;
 }
@@ -52,16 +53,9 @@ img.bg {
     -o-user-select: none;
 }
 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-    img.bg {
-        left: 50%;
-        margin-left: -512px;   /* 50% */
-    }
-}
-
 @font-face {
     font-family: dungFont;
-    src: url(DUNGRG__.TTF);
+    src: url('Dungeon Crawler CB.ttf');
 }
 
 button:focus {
@@ -70,14 +64,31 @@ button:focus {
 
 .title {
     font-family: dungFont;
-    font-size: 3rem;
+    font-size: 4rem;
     color: white;
     text-shadow: var(--shadow);
+}
+
+.title__attribute {
+    font-size: 2rem;
+}
+
+.credits {
+    font-family: dungFont;
+    font-size: 0.75rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.credits a {
+    color: white;
 }
 
 .wrapper {
     display: grid;
     grid-gap: 20px;
+    padding-bottom: 4rem;
 }
 
 .gen-btn, .options {
@@ -227,6 +238,7 @@ However, delay the fade out process for 2.5 seconds */
     list-style-type: none;
     padding: 0;
     margin: 0;
+    max-height: 30dvh;
 }
 
 li {
@@ -246,4 +258,14 @@ li {
 
 .remove-name:hover {
     color: white;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+        left: 50%;
+        margin-left: -512px;   /* 50% */
+    }
+    .title {
+        font-size: 2rem;
+    }
 }
