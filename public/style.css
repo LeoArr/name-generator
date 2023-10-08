@@ -1,271 +1,282 @@
 :root {
-    --dark: #333;
-    --light: #ccc;
-    --shadow: 0px 1px 10px rgba(10, 10, 10, 0.8);;
+  --dark: #333;
+  --light: #ccc;
+  --brown: #594328;
+  --shadow: 0px 1px 10px rgba(61, 49, 38, 0.8);
+  --highlight: 0px 1px 10px rgb(200 194 148 / 80%);
 }
 
 html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 header {
-    margin-top: 20px;
-    text-align: center;
-    color: var(--light);
+  margin-top: 20px;
+  text-align: center;
+  color: var(--light);
 }
 
 body {
-    margin: 0;
-    padding: 0px;
-    background: rgb(68, 68, 68);
-    line-height: 1.4;
-    height: 100%;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    background-color: #40362e;
+  margin: 0;
+  padding: 0px;
+  background: rgb(68, 68, 68);
+  line-height: 1.4;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: rgb(122,115,100);
+  background: linear-gradient(180deg, rgba(122,115,100,1) 0%, rgba(200,186,165,1) 35%, rgba(235,225,202,1) 100%);
+
+}
+
+h1 {
+  font-size: 5rem;
+  margin: 0;
 }
 
 /* From https://css-tricks.com/perfect-full-page-background-image/ */
-img.bg {
-    /* Set rules to fill background */
-    min-height: 100%;
-    min-width: 1024px;
-    z-index: -1;
-    opacity: 0.4;
-    /* Set up proportionate scaling */
-    width: 100%;
-    height: auto;
-        
-    /* Set up positioning */
-    position: fixed;
-    top: 0;
-    left: 0;
-    /* unselectable */
-    user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
+.bg {
+  z-index: -1;
+  height: auto;
+  position: fixed;
+  bottom: -10px;
+  right: 0;
+  left: 0;
+  fill: var(--brown);
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 @font-face {
-    font-family: dungFont;
-    src: url('Dungeon Crawler CB.ttf');
+  font-family: dungFont;
+  src: url("Dungeon Crawler CB.ttf");
 }
 
 button:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .title {
-    font-family: dungFont;
-    font-size: 4rem;
-    color: white;
-    text-shadow: var(--shadow);
+  font-family: dungFont;
+  font-size: 4rem;
+  color: var(--brown);
+  text-shadow: var(--highlight);
+  user-select: none;
 }
 
 .title__attribute {
-    font-size: 2rem;
+  font-size: 2rem;
+}
+
+.title__wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
 }
 
 .credits {
-    font-family: dungFont;
-    font-size: 0.75rem;
-    color: white;
-    display: flex;
-    justify-content: center;
+  font-family: dungFont;
+  font-size: 0.75rem;
+  color: var(--brown);
+  display: flex;
+  justify-content: center;
 }
 
 .credits a {
-    color: white;
+  color: var(--brown);
 }
 
 .wrapper {
-    display: grid;
-    grid-gap: 20px;
-    padding-bottom: 4rem;
+  display: grid;
+  grid-gap: 20px;
+  padding-bottom: 4rem;
 }
 
-.gen-btn, .options {
-    background-color: var(--dark);
-    color: var(--light);
-    padding: 0.6rem 1rem;
-    text-decoration: none;
-    border: 0;
-    box-shadow: var(--shadow);
-    transition: color 150ms, background-color 150ms;
+.gen-btn,
+.options {
+  cursor: pointer;
+  background-color: var(--brown);
+  color: var(--light);
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border: 0;
+  box-shadow: var(--shadow);
+  transition: color 150ms, background-color 150ms;
 }
 
 .gen-btn:hover {
-    color: var(--dark);
-    background-color: var(--light);
+  color: var(--dark);
+  background-color: var(--light);
 }
 
 #name {
-    min-height: 25px;
-    grid-area: name;
-    background-color: rgba(204, 204, 204, 1);
-    color: var(--dark);
-    padding: 0.6rem 1.6rem;
-    font-size: 1.1rem;
-    text-align: center;
+  min-height: 25px;
+  grid-area: name;
+  background-color: rgba(204, 204, 204, 0.5);
+  color: var(--dark);
+  padding: 0.6rem 1.6rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.description {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--brown);
+  text-shadow: var(--highlight);
+  margin-bottom: 2rem;
 }
 
 .options {
-    display: grid;
-    grid-area: options;
-    grid-template-areas: 'comp . lastn'
+  display: grid;
+  grid-area: options;
+  grid-template-areas: "comp . lastn";
+}
+
+.options label {
+  font-size: 0.8rem;
+  color: #999;
+  cursor: pointer;
+  user-select: none;
+}
+
+.options input {
+  cursor: pointer;
 }
 
 #btn-fem {
-    grid-area: btn-fem;
+  grid-area: btn-fem;
 }
 
 #btn-mal {
-    grid-area: btn-mal;
+  grid-area: btn-mal;
 }
 
 #btn-wil {
-    grid-area: btn-wil;
+  grid-area: btn-wil;
+}
+
+#btn-place {
+  grid-area: btn-place;
 }
 
 #comp {
-    grid-area: comp;
-    margin-right: 20px;
+  grid-area: comp;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 #lastn {
-    grid-area: lastn;
+  grid-area: lastn;
+  display: flex;
+  align-items: center;
 }
 
 #btn-sav {
-    grid-area: btn-save;
-    color: #666;
+  grid-area: btn-save;
+}
+
+.check-label {
+    font-size: 1rem;
 }
 
 .generation-station {
-    margin-top: 40px;
-    justify-content: center;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-areas:
-        'name name name name'
-        'btn-fem btn-mal btn-wil btn-save'
-        'options options options options'
-        'nrofgens nrofgens nrofgens nrofgens'
-        'list list list list';
+  justify-content: center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    "name name name"
+    "btn-fem btn-mal btn-wil"
+    "options options options"
+    "btn-place btn-place btn-save"
+    "nrofgens nrofgens nrofgens"
+    "list list list";
 }
 
 #nrofgens {
-    grid-area: nrofgens;
-    text-align: center;
-    color: var(--light);
-    text-shadow: var(--shadow);
+  grid-area: nrofgens;
+  text-align: center;
+  color: var(--light);
+  text-shadow: var(--shadow);
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
-    text-align: center; /* Centered text */
-    border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
-    left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
-}
-
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-    visibility: visible; /* Show the snackbar */
-
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
-However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
 }
 
 /* Name list */
 .names-list-container {
-    margin-top: 40px;
-    grid-area: list;
-    color: var(--light);
-    text-shadow: var(--shadow);
-    max-height: 250px;
-    overflow-y: auto;
+  margin-top: 40px;
+  grid-area: list;
+  color: var(--brown);
+  text-shadow: var(--highlight);
+  max-height: 250px;
+  overflow-y: auto;
 }
 
 .names-list-container::-webkit-scrollbar {
-    width: 6px;
-    background-color: rgba(204, 204, 204, 0.2);
+  width: 6px;
+  background-color: rgba(204, 204, 204, 0.2);
 }
 
 .names-list-container::-webkit-scrollbar-thumb {
-    background-color: rgba(204, 204, 204, 0.2);
+  background-color: rgba(204, 204, 204, 0.2);
 }
 
 #names-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-height: 30dvh;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 30dvh;
 }
 
 li {
-    display: grid;
-    grid-template-areas: 'name name name remove-name';
-    text-align: left;
+  display: grid;
+  grid-template-areas: "name name name remove-name";
+  text-align: left;
 }
 
 .saved-name {
-    grid-area: name;
+  grid-area: name;
 }
 
 .remove-name {
-    grid-area: remove-name;
-    text-align: right;
+  grid-area: remove-name;
+  text-align: right;
 }
 
 .remove-name:hover {
-    color: white;
+  color: var(--dark);
+  cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-    img.bg {
-        left: 50%;
-        margin-left: -512px;   /* 50% */
-    }
-    .title {
-        font-size: 2rem;
-    }
+@media screen and (max-width: 700px) {
+  /* Specific to this particular image */
+  .title {
+    font-size: 2rem;
+  }
 }
