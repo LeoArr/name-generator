@@ -44,6 +44,16 @@ $(document).ready(function () {
       }
       updateSavedNames();
     }
+  })
+
+  $("#btn-copy").click(function () {
+    var copyText = $("#name").text();
+    console.log(copyText)
+    try {
+      navigator.clipboard.writeText(copyText);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
   });
 
   //on load

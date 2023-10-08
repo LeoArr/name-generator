@@ -29,8 +29,8 @@ body {
   height: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
-  background: rgb(122,115,100);
-  background: linear-gradient(180deg, rgba(122,115,100,1) 0%, rgba(200,186,165,1) 35%, rgba(235,225,202,1) 100%);
+  background: rgb(122, 115, 100);
+  background: linear-gradient(180deg, rgba(122, 115, 100, 1) 0%, rgba(200, 186, 165, 1) 35%, rgba(235, 225, 202, 1) 100%);
 
 }
 
@@ -77,11 +77,11 @@ button:focus {
 }
 
 .title__wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
 }
 
 .credits {
@@ -119,7 +119,13 @@ button:focus {
   background-color: var(--light);
 }
 
-#name {
+#name-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#name-container {
   min-height: 25px;
   grid-area: name;
   background-color: rgba(204, 204, 204, 0.5);
@@ -153,6 +159,11 @@ button:focus {
 
 .options input {
   cursor: pointer;
+}
+
+#btn-copy {
+  cursor: pointer;
+  user-select: none;
 }
 
 #btn-fem {
@@ -189,7 +200,7 @@ button:focus {
 }
 
 .check-label {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .generation-station {
@@ -214,18 +225,30 @@ button:focus {
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px; /* Set a default minimum width */
-  margin-left: -125px; /* Divide value of min-width by 2 */
-  background-color: #333; /* Black background color */
-  color: #fff; /* White text color */
-  text-align: center; /* Centered text */
-  border-radius: 2px; /* Rounded borders */
-  padding: 16px; /* Padding */
-  position: fixed; /* Sit on top of the screen */
-  z-index: 1; /* Add a z-index if needed */
-  left: 50%; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 1;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
 }
 
 /* Name list */
@@ -275,6 +298,7 @@ li {
 }
 
 @media screen and (max-width: 700px) {
+
   /* Specific to this particular image */
   .title {
     font-size: 2rem;
