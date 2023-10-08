@@ -1904,5 +1904,5 @@ const names = {
     "väg",
     "veg",
   ],
-  placePrefixes: ["stor", "stora", "gammla", "gammel", "Höga"],
+  placePrefixes: ["stor", "stora ", "gammla ", "gammel", "höga "],
 };

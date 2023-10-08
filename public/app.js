@@ -78,10 +78,10 @@ function updateSavedNames() {
   for (var i = 0; i < names.length; i++) {
     $("#names-list").append(
       '<li><div class="name">' +
-        names[i] +
-        '</div><div onclick="removeName(' +
-        i +
-        ')" class="remove-name"><i class="fas fa-trash-alt"></i></div></li>'
+      names[i] +
+      '</div><div onclick="removeName(' +
+      i +
+      ')" class="remove-name"><i class="fas fa-trash-alt"></i></div></li>'
     );
   }
 }
@@ -115,7 +115,7 @@ function getPlaceName() {
     })()
   );
   if (Math.random() > 0.85) {
-    name = `${getNameFromList("placePrefixes")} ${name}`;
+    name = `${getNameFromList("placePrefixes")}${name}`;
   }
 
   vowels.split("").forEach((v) => {
